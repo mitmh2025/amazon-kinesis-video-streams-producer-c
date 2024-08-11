@@ -179,17 +179,6 @@ if(BUILD_COMMON_CURL)
   link_directories(${CURL_LIBRARY_DIRS})
 endif()
 
-if (BUILD_COMMON_LWS)
-  if (WIN32)
-    find_package(LIBWEBSOCKETS REQUIRED PATHS ${OPEN_SRC_INSTALL_PREFIX})
-  else()
-    pkg_check_modules(LIBWEBSOCKETS REQUIRED libwebsockets)
-  endif()
-
-  set(OPEN_SRC_INCLUDE_DIRS ${OPEN_SRC_INCLUDE_DIRS} ${LIBWEBSOCKETS_INCLUDE_DIRS})
-  link_directories(${LIBWEBSOCKETS_LIBRARY_DIRS})
-endif()
-
 ############# find dependent libraries end ############
 
 if(CMAKE_SIZEOF_VOID_P STREQUAL 4)
@@ -291,7 +280,6 @@ if(BUILD_COMMON_LWS)
     target_link_libraries(kvsCommonLws
             ${OPENSSL_CRYPTO_LIBRARY}
             ${OPENSSL_SSL_LIBRARY}
-            ${LIBWEBSOCKETS_LIBRARIES}
             kvspicUtils)
 
     install(
