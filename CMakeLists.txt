@@ -45,6 +45,8 @@ get_filename_component(ROOT "${CMAKE_CURRENT_SOURCE_DIR}" ABSOLUTE)
 
 add_definitions(-DVERSION_STRING=\"${PROJECT_VERSION}\")
 
+add_compile_options(-Wno-int-to-pointer-cast -Wno-pointer-to-int-cast)
+
 if(CONSTRAINED_DEVICE)
     add_definitions(-DCONSTRAINED_DEVICE)
 endif()
